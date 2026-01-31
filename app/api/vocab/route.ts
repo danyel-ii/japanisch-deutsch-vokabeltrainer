@@ -40,6 +40,17 @@ export async function POST(req: Request) {
     );
   }
 
+  const duplicate = await prisma.vocabEntry.findFirst({
+    where: { sourceText: { equals: sourceText, mode: "insensitive" } }
+  });
+
+  if (duplicate) {
+    return NextResponse.json(
+      { error: "Dieses Wort ist bereits vorhanden." },
+      { status: 409 }
+    );
+  }
+
   let nextOrderIndex = orderIndex;
   if (nextOrderIndex == null) {
     const maxOrder = await prisma.vocabEntry.aggregate({
@@ -99,6 +110,17 @@ export async function PUT(req: Request) {
           "Pflichtfelder fehlen: sourceText, targetKana, targetKanji, targetRomaji, lessonOrDomain."
       },
       { status: 400 }
+    );
+  }
+
+  const existing = await prisma.vocabEntry.findFirst({
+    where: { sourceText: { equals: sourceText, mode: "insensitive" } }
+  });
+
+  if (existing && existing.id !== id) {
+    return NextResponse.json(
+      { error: "Dieses Wort ist bereits vorhanden." },
+      { status: 409 }
     );
   }
 
