@@ -284,7 +284,7 @@ export default function VocabPage() {
               Vokabelliste
             </p>
             <h1 className="mt-2 text-3xl font-semibold uppercase tracking-wide text-[#0d0d0d]">
-              Dein Vokabelliste:
+              Deine Vokabelliste
             </h1>
           </div>
           <nav className="flex flex-wrap gap-3">
@@ -307,58 +307,62 @@ export default function VocabPage() {
                 {entries.length} gesamt
               </p>
             </div>
-            <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-[#555555]">
-              <span className="mr-2">Spalten anzeigen</span>
-              <button
-                type="button"
-                className={`pill ${showGerman ? "pill-primary" : "pill-ghost bg-white"}`}
-                onClick={() => setShowGerman((prev) => !prev)}
-              >
-                Deutsch
-              </button>
-              <button
-                type="button"
-                className={`pill ${showKana ? "pill-primary" : "pill-ghost bg-white"}`}
-                onClick={() => setShowKana((prev) => !prev)}
-              >
-                Kana
-              </button>
-              <button
-                type="button"
-                className={`pill ${showKanji ? "pill-primary" : "pill-ghost bg-white"}`}
-                onClick={() => setShowKanji((prev) => !prev)}
-              >
-                Kanji
-              </button>
-              <button
-                type="button"
-                className={`pill ${showRomaji ? "pill-primary" : "pill-ghost bg-white"}`}
-                onClick={() => setShowRomaji((prev) => !prev)}
-              >
-                Romaji
-              </button>
-              <span className="ml-2 mr-2">Sortieren</span>
-              <button
-                type="button"
-                className={`pill ${sortBy === "nummer" ? "pill-primary" : "pill-ghost bg-white"}`}
-                onClick={() => setSortBy("nummer")}
-              >
-                Nummer
-              </button>
-              <button
-                type="button"
-                className={`pill ${sortBy === "deutsch" ? "pill-primary" : "pill-ghost bg-white"}`}
-                onClick={() => setSortBy("deutsch")}
-              >
-                Deutsch
-              </button>
-              <button
-                type="button"
-                className="pill pill-ghost bg-white"
-                onClick={() => setSortDir((prev) => (prev === "asc" ? "desc" : "asc"))}
-              >
-                {sortDir === "asc" ? "Aufsteigend" : "Absteigend"}
-              </button>
+            <div className="mt-4 flex flex-col gap-2 text-[11px] uppercase tracking-[0.2em] text-[#555555]">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="mr-2">Spalten anzeigen</span>
+                <button
+                  type="button"
+                  className={`pill ${showGerman ? "pill-primary" : "pill-ghost bg-white"}`}
+                  onClick={() => setShowGerman((prev) => !prev)}
+                >
+                  Deutsch
+                </button>
+                <button
+                  type="button"
+                  className={`pill ${showKana ? "pill-primary" : "pill-ghost bg-white"}`}
+                  onClick={() => setShowKana((prev) => !prev)}
+                >
+                  Kana
+                </button>
+                <button
+                  type="button"
+                  className={`pill ${showKanji ? "pill-primary" : "pill-ghost bg-white"}`}
+                  onClick={() => setShowKanji((prev) => !prev)}
+                >
+                  Kanji
+                </button>
+                <button
+                  type="button"
+                  className={`pill ${showRomaji ? "pill-primary" : "pill-ghost bg-white"}`}
+                  onClick={() => setShowRomaji((prev) => !prev)}
+                >
+                  Romaji
+                </button>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="mr-2">Sortieren</span>
+                <button
+                  type="button"
+                  className={`pill ${sortBy === "nummer" ? "pill-primary" : "pill-ghost bg-white"}`}
+                  onClick={() => setSortBy("nummer")}
+                >
+                  Nummer
+                </button>
+                <button
+                  type="button"
+                  className={`pill ${sortBy === "deutsch" ? "pill-primary" : "pill-ghost bg-white"}`}
+                  onClick={() => setSortBy("deutsch")}
+                >
+                  Deutsch
+                </button>
+                <button
+                  type="button"
+                  className="pill pill-ghost bg-white"
+                  onClick={() => setSortDir((prev) => (prev === "asc" ? "desc" : "asc"))}
+                >
+                  {sortDir === "asc" ? "Aufsteigend" : "Absteigend"}
+                </button>
+              </div>
             </div>
             <div className="mt-4 overflow-x-auto">
               <table className="min-w-full border-separate border-spacing-y-2 text-left text-sm">
