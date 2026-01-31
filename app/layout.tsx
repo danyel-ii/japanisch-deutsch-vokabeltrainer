@@ -1,57 +1,6 @@
 import type { Metadata } from "next";
-import {
-  Anton,
-  DM_Serif_Text,
-  IBM_Plex_Mono,
-  IBM_Plex_Sans,
-  Noto_Sans_JP,
-  Source_Sans_3,
-  Space_Grotesk
-} from "next/font/google";
 import ThemeToggle from "./components/theme-toggle";
 import "./globals.css";
-
-const plexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  variable: "--font-plex",
-  weight: ["400", "500", "600", "700"]
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  variable: "--font-plex-mono",
-  weight: ["400", "500", "600"]
-});
-
-const anton = Anton({
-  subsets: ["latin"],
-  variable: "--font-anton",
-  weight: "400"
-});
-
-const dmSerif = DM_Serif_Text({
-  subsets: ["latin"],
-  variable: "--font-dm-serif",
-  weight: ["400"]
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space",
-  weight: ["400", "500", "600", "700"]
-});
-
-const sourceSans = Source_Sans_3({
-  subsets: ["latin"],
-  variable: "--font-source",
-  weight: ["400", "500", "600"]
-});
-
-const notoSansJP = Noto_Sans_JP({
-  subsets: ["latin"],
-  variable: "--font-jp",
-  weight: ["400", "600"]
-});
 
 export const metadata: Metadata = {
   title: "Vokabel-Arbeitsblatt",
@@ -64,12 +13,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="de"
-      data-theme="main"
-      suppressHydrationWarning
-      className={`${plexSans.variable} ${plexMono.variable} ${anton.variable} ${dmSerif.variable} ${spaceGrotesk.variable} ${sourceSans.variable} ${notoSansJP.variable}`}
-    >
+    <html lang="de" data-theme="main" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Serif+Text:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="min-h-screen">
         <ThemeToggle />
         {children}
