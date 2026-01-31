@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/db";
+import { getPrisma } from "@/lib/db";
 
 function trimOrNull(value: unknown) {
   if (typeof value !== "string") return null;
@@ -8,6 +8,7 @@ function trimOrNull(value: unknown) {
 }
 
 export async function GET() {
+  const prisma = getPrisma();
   const entries = await prisma.vocabEntry.findMany({
     orderBy: [{ orderIndex: "asc" }, { createdAt: "asc" }]
   });
@@ -15,6 +16,7 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
+  const prisma = getPrisma();
   const body = await req.json();
   const sourceLanguage = trimOrNull(body.sourceLanguage) ?? "German";
   const sourceText = trimOrNull(body.sourceText);
@@ -70,6 +72,7 @@ export async function POST(req: Request) {
 }
 
 export async function PUT(req: Request) {
+  const prisma = getPrisma();
   const body = await req.json();
   const id = trimOrNull(body.id);
 
@@ -121,6 +124,7 @@ export async function PUT(req: Request) {
 }
 
 export async function DELETE(req: Request) {
+  const prisma = getPrisma();
   const url = new URL(req.url);
   let id = url.searchParams.get("id");
 

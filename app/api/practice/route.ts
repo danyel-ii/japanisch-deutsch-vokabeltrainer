@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/db";
+import { getPrisma } from "@/lib/db";
 
 const directions = new Set(["DE_JA", "JA_DE", "MIXED"]);
 const japaneseDisplays = new Set(["kana", "kanji"]);
@@ -10,6 +10,7 @@ function matchesLesson(value: string | null, query: string) {
 }
 
 export async function GET() {
+  const prisma = getPrisma();
   const sheets = await prisma.practiceSheet.findMany({
     orderBy: { createdAt: "desc" }
   });
@@ -17,6 +18,7 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
+  const prisma = getPrisma();
   const body = await req.json();
   const direction =
     typeof body.direction === "string"

@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/db";
+import { getPrisma } from "@/lib/db";
 
 export async function GET(
   _req: Request,
   { params }: { params: { id: string } }
 ) {
+  const prisma = getPrisma();
   const sheet = await prisma.practiceSheet.findUnique({
     where: { id: params.id },
     include: { items: { orderBy: { order: "asc" } } }
@@ -21,6 +22,7 @@ export async function DELETE(
   _req: Request,
   { params }: { params: { id: string } }
 ) {
+  const prisma = getPrisma();
   try {
     await prisma.practiceSheet.delete({ where: { id: params.id } });
     return NextResponse.json({ ok: true });

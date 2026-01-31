@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import * as XLSX from "xlsx";
-import { prisma } from "@/lib/db";
+import { getPrisma } from "@/lib/db";
 import type { VocabEntry } from "@prisma/client";
 
 export const runtime = "nodejs";
@@ -11,6 +11,7 @@ const contentTypes: Record<string, string> = {
 };
 
 export async function GET(req: Request) {
+  const prisma = getPrisma();
   const url = new URL(req.url);
   const format = (url.searchParams.get("format") || "xlsx").toLowerCase();
 

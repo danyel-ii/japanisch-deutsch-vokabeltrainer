@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/db";
+import { getPrisma } from "@/lib/db";
 
 export default async function PrintPracticePage({
   params,
@@ -7,6 +7,7 @@ export default async function PrintPracticePage({
   params: { id: string };
   searchParams?: { mode?: string; answers?: string };
 }) {
+  const prisma = getPrisma();
   const sheet = await prisma.practiceSheet.findUnique({
     where: { id: params.id },
     include: { items: { orderBy: { order: "asc" } } }

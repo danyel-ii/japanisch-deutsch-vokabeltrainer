@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import * as XLSX from "xlsx";
-import { prisma } from "@/lib/db";
+import { getPrisma } from "@/lib/db";
 
 export const runtime = "nodejs";
 
@@ -66,6 +66,7 @@ function cellToString(value: unknown) {
 }
 
 export async function POST(req: Request) {
+  const prisma = getPrisma();
   const formData = await req.formData();
   const file = formData.get("file");
 
