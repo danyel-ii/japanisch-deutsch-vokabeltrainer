@@ -28,7 +28,9 @@ export async function GET(
       margin: { top: "12mm", bottom: "12mm", left: "12mm", right: "12mm" }
     });
 
-    return new NextResponse(pdfBuffer, {
+    const body = new Uint8Array(pdfBuffer);
+
+    return new NextResponse(body, {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename=\"practice-${params.id}.pdf\"`

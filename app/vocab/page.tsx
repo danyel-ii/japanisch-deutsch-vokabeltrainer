@@ -132,7 +132,6 @@ export default function VocabPage() {
   const handleEdit = (entry: VocabEntry) => {
     setEditingId(entry.id);
     setAutoError("");
-    setAutoWarning("");
     setForm({
       sourceText: entry.sourceText,
       targetKana: entry.targetKana,

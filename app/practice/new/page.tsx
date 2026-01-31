@@ -97,8 +97,8 @@ export default function PracticeBuilderPage() {
                 value={direction}
                 onChange={(event) => setDirection(event.target.value)}
               >
-                <option value="DE_JA">Deutsch -> Japanisch</option>
-                <option value="JA_DE">Japanisch -> Deutsch</option>
+                <option value="DE_JA">Deutsch {"->"} Japanisch</option>
+                <option value="JA_DE">Japanisch {"->"} Deutsch</option>
                 <option value="MIXED">Deutsch {"<->"} Japanisch (Gemischt)</option>
               </select>
             </label>
