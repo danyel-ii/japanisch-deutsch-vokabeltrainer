@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model VocabEntry {
+  id             String         @id @default(cuid())
+  sourceLanguage String         @default("German")
+  sourceText     String
+  targetLanguage String         @default("Japanese")
+  targetKana     String
+  targetKanji    String
+  targetRomaji   String
+  lessonOrDomain String
+  orderIndex     Int            @default(0)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  practiceItems  PracticeItem[]
+
+  @@unique([sourceText, targetKana])
+}
+
+model PracticeSheet {
+  id        String          @id @default(cuid())
+  direction String
+  count     Int
+  lessonFilter String?
+  japaneseDisplay String     @default("kana")
+  showRomaji Boolean         @default(false)
+  createdAt DateTime        @default(now())
+  items     PracticeItem[]
+}
+
+model PracticeItem {
+  id         String        @id @default(cuid())
+  sheetId    String
+  vocabId    String
+  promptText String
+  promptLanguage String
+  answerKana String
+  answerKanji String
+  answerRomaji String
+  answerText String
+  order      Int
+
+  sheet PracticeSheet @relation(fields: [sheetId], references: [id], onDelete: Cascade)
+  vocab VocabEntry    @relation(fields: [vocabId], references: [id])
+
+  @@index([sheetId, order])
+}
