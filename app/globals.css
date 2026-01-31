@@ -4,72 +4,221 @@
 
 :root {
   color-scheme: light;
-  --bg-canvas: #f6f99c;
-  --bg-surface: #ecece7;
-  --bg-white: #ffffff;
-  --text-main: #0d0d0d;
-  --text-sub: #555555;
-  --border: #0d0d0d;
-  --radius-lg: 16px;
-  --radius-sm: 8px;
+  --bg-body: #ffffff;
+  --bg-surface: #ffffff;
+  --bg-contrast: #050505;
+  --bg-subtle: #f7f7f7;
+  --bg-hover: #fafafa;
+  --text-primary: #000000;
+  --text-secondary: #717171;
+  --text-tertiary: #a0a0a0;
+  --text-contrast: #ffffff;
+  --border-light: #f0f0f0;
+  --border-med: #e5e5e5;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
   --radius-pill: 999px;
+  --border-style: 1px solid var(--border-med);
+  --font-head: var(--font-space, "Space Grotesk");
+  --font-body: var(--font-source, "Source Sans 3");
+  --font-jp-stack: var(--font-jp, "Noto Sans JP");
+  --font-mono-stack: var(--font-mono, "IBM Plex Mono");
+  --bg-canvas: var(--bg-body);
+  --bg-white: var(--bg-surface);
+  --text-main: var(--text-primary);
+  --text-sub: var(--text-secondary);
+  --ink-primary: var(--text-primary);
+  --border: var(--border-med);
+  --surface-blue: var(--bg-subtle);
+  --surface-pink: var(--bg-subtle);
+  --surface-green: var(--bg-subtle);
+  --surface-paper: var(--bg-surface);
 }
 
 body {
-  font-family: var(--font-plex, "IBM Plex Sans"), ui-sans-serif, system-ui;
-  background-color: var(--bg-canvas);
-  color: var(--text-main);
+  font-family: var(--font-body), ui-sans-serif, system-ui;
+  background-color: var(--bg-body);
+  color: var(--text-primary);
   min-height: 100vh;
-  background-image: radial-gradient(#00000005 1px, transparent 1px);
-  background-size: 20px 20px;
+  -webkit-font-smoothing: antialiased;
 }
 
 .surface {
   background: var(--bg-surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-light);
+}
+
+.surface-blue {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
 }
 
 .surface-white {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+}
+
+.surface-pink {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+}
+
+.surface-green {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
 }
 
 .card {
   border-radius: var(--radius-lg);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  box-shadow: none;
+}
+
+.font-head {
+  font-family: var(--font-head), ui-sans-serif, system-ui;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.font-body {
+  font-family: var(--font-body), ui-sans-serif, system-ui;
+}
+
+.font-jp {
+  font-family: var(--font-jp-stack), "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo",
+    sans-serif;
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
 }
 
 .pill {
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-med);
   height: 32px;
   padding: 0 16px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 700;
-  transition: all 0.2s;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+  background: var(--bg-surface);
+  cursor: pointer;
+  color: var(--text-primary);
 }
 
 .pill-primary {
-  background: var(--text-main);
-  color: var(--bg-white);
+  background: var(--text-primary);
+  color: var(--text-contrast);
+  border-color: var(--text-primary);
+}
+
+.pill-ghost {
+  background: transparent;
+  color: var(--text-primary);
 }
 
 .pill-ghost:hover {
-  background: var(--bg-white);
+  border-color: var(--text-primary);
+}
+
+.badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border-med);
+  background: var(--bg-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+}
+
+.input-field {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-med);
+  padding: 0 12px;
+  height: 40px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  border-radius: var(--radius-sm);
+  width: 100%;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: var(--text-primary);
+}
+
+.answer-input {
+  background: var(--bg-subtle);
+  border: 1px solid transparent;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  border-radius: var(--radius-sm);
+  width: 100%;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.answer-input:focus {
+  background: #ffffff;
+  border-color: var(--border-med);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-med);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.data-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.95rem;
+}
+
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tr:hover {
+  background-color: var(--bg-hover);
+}
+
+.table-shell {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  overflow: auto;
 }
 
 .sheet-grid {
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 100% 48px, 100% 100%;
-  background-position: 0 0;
-  background-repeat: repeat-y;
+  background: var(--bg-surface);
 }
 
 @media print {
@@ -111,26 +260,26 @@ body {
   margin: 0 auto;
   padding: 12mm;
   background: #ffffff;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-med);
   border-radius: var(--radius-lg);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
 }
 
 [data-mode='ink'] .ink-muted {
-  color: #0f172a;
+  color: var(--text-primary);
 }
 
 [data-mode='ink'] .ink-bg {
   background: #ffffff;
-  border-color: #0f172a;
+  border-color: var(--text-primary);
 }
 
 [data-mode='ink'] thead {
   background: #ffffff !important;
-  color: #0f172a !important;
+  color: var(--text-primary) !important;
 }
 
 [data-mode='ink'] th,
 [data-mode='ink'] td {
-  border-color: #0f172a !important;
+  border-color: var(--text-primary) !important;
 }
