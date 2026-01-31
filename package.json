@@ -17,6 +17,13 @@
     "react-dom": "^18.2.0",
     "xlsx": "^0.18.5"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@prisma/client",
+      "@prisma/engines",
+      "prisma"
+    ]
+  },
   "devDependencies": {
     "@types/node": "^20.12.7",
     "@types/react": "^18.2.79",

@@ -1,6 +1,8 @@
 __pycache__/
 node_modules/
 .env
+.vercel/.env.production
+.github/secrets.env
 .next/
 dev.db
 prisma/dev.db
@@ -8,3 +10,5 @@ prisma/dev.db-journal
 .DS_Store
 web/node_modules/
 web/dist/
+.vercel
+.env*.local
