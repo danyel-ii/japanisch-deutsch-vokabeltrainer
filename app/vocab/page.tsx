@@ -56,6 +56,8 @@ export default function VocabPage() {
   const [showKana, setShowKana] = useState(true);
   const [showKanji, setShowKanji] = useState(true);
   const [showRomaji, setShowRomaji] = useState(true);
+  const [sortBy, setSortBy] = useState<"nummer" | "deutsch">("nummer");
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
   const lessonCacheKey = "vocab.lessonOrDomain";
 
   const loadEntries = async () => {
@@ -261,7 +263,17 @@ export default function VocabPage() {
   ]);
 
   const visibleColumnCount =
-    [showGerman, showKana, showKanji, showRomaji].filter(Boolean).length + 2;
+    [showGerman, showKana, showKanji, showRomaji].filter(Boolean).length + 3;
+
+  const sortedEntries = [...entries].sort((a, b) => {
+    let compare = 0;
+    if (sortBy === "nummer") {
+      compare = (a.orderIndex ?? 0) - (b.orderIndex ?? 0);
+    } else {
+      compare = a.sourceText.localeCompare(b.sourceText, "de", { sensitivity: "base" });
+    }
+    return sortDir === "asc" ? compare : -compare;
+  });
 
   return (
     <main className="min-h-screen px-6 py-8">
@@ -325,11 +337,34 @@ export default function VocabPage() {
               >
                 Romaji
               </button>
+              <span className="ml-2 mr-2">Sortieren</span>
+              <button
+                type="button"
+                className={`pill ${sortBy === "nummer" ? "pill-primary" : "pill-ghost bg-white"}`}
+                onClick={() => setSortBy("nummer")}
+              >
+                Nummer
+              </button>
+              <button
+                type="button"
+                className={`pill ${sortBy === "deutsch" ? "pill-primary" : "pill-ghost bg-white"}`}
+                onClick={() => setSortBy("deutsch")}
+              >
+                Deutsch
+              </button>
+              <button
+                type="button"
+                className="pill pill-ghost bg-white"
+                onClick={() => setSortDir((prev) => (prev === "asc" ? "desc" : "asc"))}
+              >
+                {sortDir === "asc" ? "Aufsteigend" : "Absteigend"}
+              </button>
             </div>
             <div className="mt-4 overflow-x-auto">
               <table className="min-w-full border-separate border-spacing-y-2 text-left text-sm">
                 <thead className="text-xs uppercase tracking-[0.3em] text-[#555555]">
                   <tr>
+                    <th className="px-3 py-2">Nummer</th>
                     {showGerman && <th className="px-3 py-2">Deutsch</th>}
                     {showKana && <th className="px-3 py-2">Japanisch</th>}
                     {showKanji && <th className="px-3 py-2">Kanji</th>}
@@ -339,11 +374,14 @@ export default function VocabPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {entries.map((entry) => (
+                  {sortedEntries.map((entry) => (
                     <tr
                       key={entry.id}
                       className="rounded-xl border border-black/80 bg-[var(--bg-surface)] text-[#0d0d0d] transition hover:bg-white"
                     >
+                      <td className="px-3 py-2 text-xs text-[#555555]">
+                        {entry.orderIndex}
+                      </td>
                       {showGerman && (
                         <td className="px-3 py-2 font-medium">{entry.sourceText}</td>
                       )}
