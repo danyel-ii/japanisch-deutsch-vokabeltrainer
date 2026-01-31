@@ -7,21 +7,115 @@
   --bg-canvas: #f6f99c;
   --bg-surface: #ecece7;
   --bg-white: #ffffff;
+  --bg-hover: var(--bg-white);
   --text-main: #0d0d0d;
   --text-sub: #555555;
   --border: #0d0d0d;
   --radius-lg: 16px;
   --radius-sm: 8px;
   --radius-pill: 999px;
+  --font-body: var(--font-plex, "IBM Plex Sans");
+  --font-head: var(--font-plex, "IBM Plex Sans");
+  --font-jp: var(--font-jp, "Noto Sans JP");
+  --font-mono: var(--font-plex-mono, "IBM Plex Mono");
+  --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  --body-bg-image: radial-gradient(#00000005 1px, transparent 1px);
+  --body-bg-size: 20px 20px;
+  --pill-radius: var(--radius-pill);
+  --pill-height: 32px;
+  --pill-padding-x: 16px;
+  --pill-font-size: 11px;
+  --pill-letter-spacing: 0.12em;
+  --pill-text-transform: uppercase;
+  --pill-font-weight: 700;
+  --pill-font-family: var(--font-head);
+  --pill-border: 1px solid var(--border);
+  --pill-bg: transparent;
+  --pill-color: var(--text-main);
+  --pill-ghost-bg: var(--bg-white);
+  --pill-ghost-hover-bg: var(--bg-white);
+  --pill-ghost-hover-border: var(--border);
+  --sheet-grid-image: linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  --sheet-grid-size: 100% 48px, 100% 100%;
+  --sheet-grid-position: 0 0;
+  --sheet-grid-repeat: repeat-y;
+}
+
+[data-theme="ui"] {
+  --bg-canvas: #fdfe75;
+  --bg-surface: #bbeffa;
+  --bg-white: #ffffff;
+  --bg-hover: #ffffff;
+  --text-main: #3b2319;
+  --text-sub: #5a3b30;
+  --border: #3b2319;
+  --radius-pill: 99px;
+  --font-body: var(--font-dm-serif, "DM Serif Text");
+  --font-head: var(--font-anton, "Anton");
+  --card-shadow: 4px 4px 0 rgba(59, 35, 25, 0.1);
+  --body-bg-image: none;
+  --body-bg-size: auto;
+  --pill-height: 34px;
+  --pill-font-size: 0.7rem;
+  --pill-letter-spacing: 0.08em;
+  --pill-font-family: var(--font-head);
+  --pill-border: 1.5px solid var(--border);
+  --pill-bg: var(--bg-white);
+  --pill-color: var(--text-main);
+  --pill-ghost-bg: var(--bg-white);
+}
+
+[data-theme="ui2"] {
+  --bg-canvas: #ffffff;
+  --bg-surface: #ffffff;
+  --bg-white: #ffffff;
+  --bg-hover: #fafafa;
+  --text-main: #000000;
+  --text-sub: #717171;
+  --border: #e5e5e5;
+  --radius-lg: 12px;
+  --radius-sm: 4px;
+  --radius-pill: 6px;
+  --font-body: var(--font-source, "Source Sans 3");
+  --font-head: var(--font-space, "Space Grotesk");
+  --card-shadow: none;
+  --body-bg-image: none;
+  --body-bg-size: auto;
+  --pill-letter-spacing: 0;
+  --pill-text-transform: none;
+  --pill-font-weight: 500;
+  --pill-font-size: 13px;
+  --pill-font-family: var(--font-body);
+  --pill-radius: var(--radius-sm);
+  --pill-bg: transparent;
+  --pill-ghost-bg: transparent;
+  --pill-ghost-hover-bg: var(--bg-hover);
+  --pill-ghost-hover-border: var(--text-main);
+  --sheet-grid-image: none;
+  --sheet-grid-size: auto;
+  --sheet-grid-repeat: no-repeat;
 }
 
 body {
-  font-family: var(--font-plex, "IBM Plex Sans"), ui-sans-serif, system-ui;
+  font-family: var(--font-body), ui-sans-serif, system-ui;
   background-color: var(--bg-canvas);
   color: var(--text-main);
   min-height: 100vh;
-  background-image: radial-gradient(#00000005 1px, transparent 1px);
-  background-size: 20px 20px;
+  background-image: var(--body-bg-image);
+  background-size: var(--body-bg-size);
+}
+
+h1,
+h2,
+h3,
+.font-head {
+  font-family: var(--font-head), ui-sans-serif, system-ui;
+}
+
+.font-jp {
+  font-family: var(--font-jp), "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo",
+    sans-serif;
 }
 
 .surface {
@@ -36,22 +130,25 @@ body {
 
 .card {
   border-radius: var(--radius-lg);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--card-shadow);
 }
 
 .pill {
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border);
-  height: 32px;
-  padding: 0 16px;
+  border-radius: var(--pill-radius);
+  border: var(--pill-border);
+  height: var(--pill-height);
+  padding: 0 var(--pill-padding-x);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 700;
+  font-size: var(--pill-font-size);
+  letter-spacing: var(--pill-letter-spacing);
+  text-transform: var(--pill-text-transform);
+  font-weight: var(--pill-font-weight);
+  font-family: var(--pill-font-family);
   transition: all 0.2s;
+  background: var(--pill-bg);
+  color: var(--pill-color);
 }
 
 .pill-primary {
@@ -60,16 +157,19 @@ body {
 }
 
 .pill-ghost:hover {
-  background: var(--bg-white);
+  background: var(--pill-ghost-hover-bg);
+  border-color: var(--pill-ghost-hover-border);
+}
+
+.pill-ghost {
+  background: var(--pill-ghost-bg);
 }
 
 .sheet-grid {
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 100% 48px, 100% 100%;
-  background-position: 0 0;
-  background-repeat: repeat-y;
+  background-image: var(--sheet-grid-image);
+  background-size: var(--sheet-grid-size);
+  background-position: var(--sheet-grid-position);
+  background-repeat: var(--sheet-grid-repeat);
 }
 
 @media print {

@@ -280,15 +280,15 @@ export default function VocabPage() {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
         <header className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#555555]">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--text-sub)]">
               Vokabelliste
             </p>
-            <h1 className="mt-2 text-3xl font-semibold uppercase tracking-wide text-[#0d0d0d]">
+            <h1 className="mt-2 text-3xl font-semibold uppercase tracking-wide text-[color:var(--text-main)]">
               Deine Vokabelliste
             </h1>
           </div>
           <nav className="flex flex-wrap gap-3">
-            <Link href="/" className="pill pill-ghost bg-white">
+            <Link href="/" className="pill pill-ghost">
               Start
             </Link>
             <Link href="/practice/new" className="pill pill-primary">
@@ -300,40 +300,40 @@ export default function VocabPage() {
         <section className="grid gap-6 lg:grid-cols-[1fr_320px]">
           <div className="card surface p-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold uppercase tracking-wide text-[#0d0d0d]">
+              <h2 className="text-lg font-semibold uppercase tracking-wide text-[color:var(--text-main)]">
                 Eintraege
               </h2>
-              <p className="text-xs uppercase tracking-[0.3em] text-[#555555]">
+              <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--text-sub)]">
                 {entries.length} gesamt
               </p>
             </div>
-            <div className="mt-4 flex flex-col gap-2 text-[11px] uppercase tracking-[0.2em] text-[#555555]">
+            <div className="mt-4 flex flex-col gap-2 text-[11px] uppercase tracking-[0.2em] text-[color:var(--text-sub)]">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="mr-2">Spalten anzeigen</span>
                 <button
                   type="button"
-                  className={`pill ${showGerman ? "pill-primary" : "pill-ghost bg-white"}`}
+                  className={`pill ${showGerman ? "pill-primary" : "pill-ghost"}`}
                   onClick={() => setShowGerman((prev) => !prev)}
                 >
                   Deutsch
                 </button>
                 <button
                   type="button"
-                  className={`pill ${showKana ? "pill-primary" : "pill-ghost bg-white"}`}
+                  className={`pill ${showKana ? "pill-primary" : "pill-ghost"}`}
                   onClick={() => setShowKana((prev) => !prev)}
                 >
                   Kana
                 </button>
                 <button
                   type="button"
-                  className={`pill ${showKanji ? "pill-primary" : "pill-ghost bg-white"}`}
+                  className={`pill ${showKanji ? "pill-primary" : "pill-ghost"}`}
                   onClick={() => setShowKanji((prev) => !prev)}
                 >
                   Kanji
                 </button>
                 <button
                   type="button"
-                  className={`pill ${showRomaji ? "pill-primary" : "pill-ghost bg-white"}`}
+                  className={`pill ${showRomaji ? "pill-primary" : "pill-ghost"}`}
                   onClick={() => setShowRomaji((prev) => !prev)}
                 >
                   Romaji
@@ -343,21 +343,21 @@ export default function VocabPage() {
                 <span className="mr-2">Sortieren</span>
                 <button
                   type="button"
-                  className={`pill ${sortBy === "nummer" ? "pill-primary" : "pill-ghost bg-white"}`}
+                  className={`pill ${sortBy === "nummer" ? "pill-primary" : "pill-ghost"}`}
                   onClick={() => setSortBy("nummer")}
                 >
                   Nummer
                 </button>
                 <button
                   type="button"
-                  className={`pill ${sortBy === "deutsch" ? "pill-primary" : "pill-ghost bg-white"}`}
+                  className={`pill ${sortBy === "deutsch" ? "pill-primary" : "pill-ghost"}`}
                   onClick={() => setSortBy("deutsch")}
                 >
                   Deutsch
                 </button>
                 <button
                   type="button"
-                  className="pill pill-ghost bg-white"
+                  className="pill pill-ghost"
                   onClick={() => setSortDir((prev) => (prev === "asc" ? "desc" : "asc"))}
                 >
                   {sortDir === "asc" ? "Aufsteigend" : "Absteigend"}
@@ -366,7 +366,7 @@ export default function VocabPage() {
             </div>
             <div className="mt-4 overflow-x-auto">
               <table className="min-w-full border-separate border-spacing-y-2 text-left text-sm">
-                <thead className="text-xs uppercase tracking-[0.3em] text-[#555555]">
+                <thead className="text-xs uppercase tracking-[0.3em] text-[color:var(--text-sub)]">
                   <tr>
                     <th className="px-3 py-2">Nummer</th>
                     {showGerman && <th className="px-3 py-2">Deutsch</th>}
@@ -381,9 +381,9 @@ export default function VocabPage() {
                   {sortedEntries.map((entry) => (
                     <tr
                       key={entry.id}
-                      className="rounded-xl border border-black/80 bg-[var(--bg-surface)] text-[#0d0d0d] transition hover:bg-white"
+                      className="rounded-xl border border-[color:var(--border)] bg-[var(--bg-surface)] text-[color:var(--text-main)] transition hover:bg-[var(--bg-hover)]"
                     >
-                      <td className="px-3 py-2 text-xs text-[#555555]">
+                      <td className="px-3 py-2 text-xs text-[color:var(--text-sub)]">
                         {entry.orderIndex}
                       </td>
                       {showGerman && (
@@ -398,13 +398,13 @@ export default function VocabPage() {
                       <td className="px-3 py-2 text-right">
                         <div className="flex justify-end gap-2">
                           <button
-                            className="pill pill-ghost bg-white"
+                            className="pill pill-ghost"
                             onClick={() => handleEdit(entry)}
                           >
                             Bearbeiten
                           </button>
                           <button
-                            className="pill border border-black bg-[var(--bg-canvas)] text-[#0d0d0d]"
+                            className="pill border border-[color:var(--border)] bg-[var(--bg-canvas)] text-[color:var(--text-main)]"
                             onClick={() => handleDelete(entry.id)}
                           >
                             Loeschen
@@ -417,7 +417,7 @@ export default function VocabPage() {
                     <tr>
                       <td
                         colSpan={visibleColumnCount}
-                        className="px-3 py-6 text-center text-sm text-[#555555]"
+                        className="px-3 py-6 text-center text-sm text-[color:var(--text-sub)]"
                       >
                         Fuegen Sie den ersten Eintrag hinzu.
                       </td>
@@ -430,56 +430,56 @@ export default function VocabPage() {
 
           <div className="flex flex-col gap-6">
             <div className="card surface-white p-6">
-              <h2 className="text-lg font-semibold uppercase tracking-wide text-[#0d0d0d]">
+              <h2 className="text-lg font-semibold uppercase tracking-wide text-[color:var(--text-main)]">
                 {editingId ? "Eintrag bearbeiten" : "Eintrag hinzufuegen"}
               </h2>
-              <div className="mt-4 flex flex-col gap-3 text-sm text-[#0d0d0d]">
+              <div className="mt-4 flex flex-col gap-3 text-sm text-[color:var(--text-main)]">
                 <label className="flex flex-col gap-1">
-                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[#555555]">
+                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--text-sub)]">
                     Deutsch
                   </span>
                   <input
-                    className="rounded-[var(--radius-sm)] border border-black/80 px-3 py-2"
+                    className="rounded-[var(--radius-sm)] border border-[color:var(--border)] bg-[var(--bg-white)] px-3 py-2"
                     value={form.sourceText}
                     onChange={(event) => handleChange("sourceText", event.target.value)}
                   />
                 </label>
                 <label className="flex flex-col gap-1">
-                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[#555555]">
+                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--text-sub)]">
                     Japanisch (Kana)
                   </span>
                   <input
-                    className="rounded-[var(--radius-sm)] border border-black/80 px-3 py-2"
+                    className="rounded-[var(--radius-sm)] border border-[color:var(--border)] bg-[var(--bg-white)] px-3 py-2"
                     value={form.targetKana}
                     onChange={(event) => handleChange("targetKana", event.target.value)}
                   />
                 </label>
                 <label className="flex flex-col gap-1">
-                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[#555555]">
+                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--text-sub)]">
                     Kanji
                   </span>
                   <input
-                    className="rounded-[var(--radius-sm)] border border-black/80 px-3 py-2"
+                    className="rounded-[var(--radius-sm)] border border-[color:var(--border)] bg-[var(--bg-white)] px-3 py-2"
                     value={form.targetKanji}
                     onChange={(event) => handleChange("targetKanji", event.target.value)}
                   />
                 </label>
                 <label className="flex flex-col gap-1">
-                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[#555555]">
+                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--text-sub)]">
                     Romaji
                   </span>
                   <input
-                    className="rounded-[var(--radius-sm)] border border-black/80 px-3 py-2"
+                    className="rounded-[var(--radius-sm)] border border-[color:var(--border)] bg-[var(--bg-white)] px-3 py-2"
                     value={form.targetRomaji}
                     onChange={(event) => handleChange("targetRomaji", event.target.value)}
                   />
                 </label>
                 <label className="flex flex-col gap-1">
-                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[#555555]">
+                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--text-sub)]">
                     Lektion / Bereich
                   </span>
                   <input
-                    className="rounded-[var(--radius-sm)] border border-black/80 px-3 py-2"
+                    className="rounded-[var(--radius-sm)] border border-[color:var(--border)] bg-[var(--bg-white)] px-3 py-2"
                     value={form.lessonOrDomain}
                     onChange={(event) => handleChange("lessonOrDomain", event.target.value)}
                   />
@@ -491,14 +491,14 @@ export default function VocabPage() {
                 </button>
                 {editingId && (
                   <button
-                    className="pill pill-ghost bg-white"
+                    className="pill pill-ghost"
                     onClick={resetForm}
                   >
                     Abbrechen
                   </button>
                 )}
               </div>
-              <div className="mt-3 flex flex-col gap-2 text-xs uppercase tracking-[0.2em] text-[#555555]">
+              <div className="mt-3 flex flex-col gap-2 text-xs uppercase tracking-[0.2em] text-[color:var(--text-sub)]">
                 {autoLoading && <p>Automatisch aus OpenAI ausfuellen...</p>}
                 {autoError && <p className="text-red-600">{autoError}</p>}
                 {status && <p>{status}</p>}
@@ -506,10 +506,10 @@ export default function VocabPage() {
             </div>
 
             <div className="card surface-white p-6">
-              <h2 className="text-lg font-semibold uppercase tracking-wide text-[#0d0d0d]">
+              <h2 className="text-lg font-semibold uppercase tracking-wide text-[color:var(--text-main)]">
                 XLSX / ODS importieren
               </h2>
-              <p className="mt-2 text-sm text-[#555555]">
+              <p className="mt-2 text-sm text-[color:var(--text-sub)]">
                 Lade die XLSX/ODS-Vorlage mit Deutsch-, Japanisch-, Kanji- und Romaji-Headern.
               </p>
               <div className="mt-4 flex flex-col gap-3 text-sm">
@@ -521,15 +521,15 @@ export default function VocabPage() {
                     if (file) handleImport(file);
                   }}
                 />
-                {importing && <span className="text-xs text-[#555555]">Importiere...</span>}
+                {importing && <span className="text-xs text-[color:var(--text-sub)]">Importiere...</span>}
               </div>
             </div>
 
             <div className="card surface-white p-6">
-              <h2 className="text-lg font-semibold uppercase tracking-wide text-[#0d0d0d]">
+              <h2 className="text-lg font-semibold uppercase tracking-wide text-[color:var(--text-main)]">
                 XLSX / ODS exportieren
               </h2>
-              <p className="mt-2 text-sm text-[#555555]">
+              <p className="mt-2 text-sm text-[color:var(--text-sub)]">
                 Exportiere die Vokabelliste im Tabellenformat.
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
@@ -543,14 +543,14 @@ export default function VocabPage() {
                 </button>
                 <button
                   type="button"
-                  className="pill pill-ghost bg-white"
+                  className="pill pill-ghost"
                   onClick={() => handleExport("ods")}
                   disabled={exporting}
                 >
                   ODS exportieren
                 </button>
               </div>
-              {exporting && <p className="mt-2 text-xs text-[#555555]">Exportiere...</p>}
+              {exporting && <p className="mt-2 text-xs text-[color:var(--text-sub)]">Exportiere...</p>}
             </div>
           </div>
         </section>

@@ -15,7 +15,7 @@ export default async function PrintPracticePage({
   if (!sheet) {
     return (
       <main className="p-10">
-        <p className="text-sm text-[#555555]">Arbeitsblatt nicht gefunden.</p>
+        <p className="text-sm text-[color:var(--text-sub)]">Arbeitsblatt nicht gefunden.</p>
       </main>
     );
   }
@@ -27,16 +27,16 @@ export default async function PrintPracticePage({
     <main
       data-mode={mode}
       className={`min-h-screen w-full px-8 py-6 text-[var(--text-main)] ${
-        mode === "ink" ? "bg-white" : "bg-[var(--bg-surface)]"
+        mode === "ink" ? "bg-[var(--bg-white)]" : "bg-[var(--bg-surface)]"
       }`}
     >
       <div className="print-page">
         <header className="mb-6 flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#555555]">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--text-sub)]">
               Arbeitsblatt
             </p>
-            <h1 className="mt-2 text-2xl font-semibold uppercase tracking-wide text-[#0d0d0d]">
+            <h1 className="mt-2 text-2xl font-semibold uppercase tracking-wide text-[color:var(--text-main)]">
               {sheet.direction === "MIXED"
                 ? "Deutsch <-> Japanisch"
                 : sheet.direction === "DE_JA"
@@ -44,20 +44,20 @@ export default async function PrintPracticePage({
                 : "Japanisch -> Deutsch"}
             </h1>
           </div>
-          <div className="text-right text-xs uppercase tracking-[0.2em] text-[#555555]">
+          <div className="text-right text-xs uppercase tracking-[0.2em] text-[color:var(--text-sub)]">
             <p>{new Date(sheet.createdAt).toLocaleDateString()}</p>
             {sheet.lessonFilter && <p>Lektion: {sheet.lessonFilter}</p>}
             <p>{sheet.count} Eintraege</p>
           </div>
         </header>
 
-        <div className="overflow-hidden rounded-[var(--radius-lg)] border border-black bg-white">
+        <div className="overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-[var(--bg-white)]">
           <table className="w-full border-collapse text-left text-sm">
-            <thead className="text-xs uppercase tracking-[0.3em] text-[#555555]">
+            <thead className="text-xs uppercase tracking-[0.3em] text-[color:var(--text-sub)]">
               <tr>
-                <th className="border-b border-black px-4 py-2">#</th>
-                <th className="border-b border-black px-4 py-2">Vorgabe</th>
-                <th className="border-b border-black px-4 py-2">Antwort</th>
+                <th className="border-b border-[color:var(--border)] px-4 py-2">#</th>
+                <th className="border-b border-[color:var(--border)] px-4 py-2">Vorgabe</th>
+                <th className="border-b border-[color:var(--border)] px-4 py-2">Antwort</th>
               </tr>
             </thead>
             <tbody>
@@ -68,10 +68,10 @@ export default async function PrintPracticePage({
                   ? `${japaneseValue} (${item.answerRomaji})`
                   : japaneseValue;
                 return (
-                  <tr key={item.id} className="border-b border-black last:border-b-0">
-                    <td className="px-4 py-3 text-xs text-[#555555]">{item.order}</td>
-                    <td className="px-4 py-3 font-medium text-[#0d0d0d]">{item.promptText}</td>
-                    <td className="px-4 py-3 text-[#0d0d0d]">
+                  <tr key={item.id} className="border-b border-[color:var(--border)] last:border-b-0">
+                    <td className="px-4 py-3 text-xs text-[color:var(--text-sub)]">{item.order}</td>
+                    <td className="px-4 py-3 font-medium text-[color:var(--text-main)]">{item.promptText}</td>
+                    <td className="px-4 py-3 text-[color:var(--text-main)]">
                       {showAnswers ? (
                         item.promptLanguage === "DE" ? (
                           <span>{japaneseWithRomaji}</span>
@@ -79,7 +79,7 @@ export default async function PrintPracticePage({
                           item.answerText
                         )
                       ) : (
-                        <span className="block h-6 w-full border-b border-black"></span>
+                        <span className="block h-6 w-full border-b border-[color:var(--border)]"></span>
                       )}
                     </td>
                   </tr>

@@ -106,7 +106,7 @@ export default function PracticeSheetPage() {
   if (!sheet) {
     return (
       <main className="min-h-screen px-6 py-8">
-        <div className="mx-auto max-w-4xl text-sm text-[#555555]">Laedt...</div>
+        <div className="mx-auto max-w-4xl text-sm text-[color:var(--text-sub)]">Laedt...</div>
       </main>
     );
   }
@@ -116,19 +116,19 @@ export default function PracticeSheetPage() {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
         <header className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#555555]">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--text-sub)]">
               Arbeitsblatt
             </p>
-            <h1 className="mt-2 text-3xl font-semibold uppercase tracking-wide text-[#0d0d0d]">
+            <h1 className="mt-2 text-3xl font-semibold uppercase tracking-wide text-[color:var(--text-main)]">
               Trage die Antwort in die leere Spalte ein.
             </h1>
-            <p className="mt-2 text-sm text-[#555555]">{summary}</p>
+            <p className="mt-2 text-sm text-[color:var(--text-sub)]">{summary}</p>
           </div>
           <nav className="flex flex-wrap gap-3">
-            <Link href="/practice/new" className="pill pill-ghost bg-white">
+            <Link href="/practice/new" className="pill pill-ghost">
               Neues Arbeitsblatt
             </Link>
-            <Link href={`/print/practice/${sheet.id}`} className="pill pill-ghost bg-white">
+            <Link href={`/print/practice/${sheet.id}`} className="pill pill-ghost">
               Druckansicht
             </Link>
           </nav>
@@ -143,19 +143,19 @@ export default function PracticeSheetPage() {
               Pruefen
             </button>
             <button
-              className="pill pill-ghost bg-white"
+              className="pill pill-ghost"
               onClick={() => setReveal((prev) => !prev)}
             >
               {reveal ? "Loesungen ausblenden" : "Loesungen anzeigen"}
             </button>
             <button
-              className="pill pill-ghost bg-white"
+              className="pill pill-ghost"
               onClick={handleExport}
             >
               PDF exportieren
             </button>
             {status && (
-              <span className="text-xs uppercase tracking-[0.2em] text-[#555555]">
+              <span className="text-xs uppercase tracking-[0.2em] text-[color:var(--text-sub)]">
                 {status}
               </span>
             )}
@@ -163,7 +163,7 @@ export default function PracticeSheetPage() {
 
           <div className="mt-6 overflow-x-auto">
             <table className="min-w-full border-separate border-spacing-y-2 text-left text-sm">
-              <thead className="text-xs uppercase tracking-[0.3em] text-[#555555]">
+              <thead className="text-xs uppercase tracking-[0.3em] text-[color:var(--text-sub)]">
                 <tr>
                   <th className="px-3 py-2">#</th>
                   <th className="px-3 py-2">Vorgabe</th>
@@ -183,21 +183,21 @@ export default function PracticeSheetPage() {
                   return (
                     <tr
                       key={item.id}
-                      className={`rounded-xl border border-black/70 bg-[var(--bg-surface)] ${
+                      className={`rounded-xl border border-[color:var(--border)] bg-[var(--bg-surface)] ${
                         isCorrect === true
                           ? "border-emerald-600"
                           : isCorrect === false
                           ? "border-rose-600"
-                          : "border-black/70"
+                          : "border-[color:var(--border)]"
                       }`}
                     >
-                      <td className="px-3 py-2 text-xs text-[#555555]">{item.order}</td>
-                      <td className="px-3 py-2 font-medium text-[#0d0d0d]">
+                      <td className="px-3 py-2 text-xs text-[color:var(--text-sub)]">{item.order}</td>
+                      <td className="px-3 py-2 font-medium text-[color:var(--text-main)]">
                         {item.promptText}
                       </td>
                       <td className="px-3 py-2">
                         <input
-                          className="w-full rounded-[var(--radius-sm)] border border-black/80 bg-white px-3 py-2"
+                          className="w-full rounded-[var(--radius-sm)] border border-[color:var(--border)] bg-[var(--bg-white)] px-3 py-2"
                           value={answers[item.id] ?? ""}
                           onChange={(event) =>
                             setAnswers((prev) => ({
@@ -218,7 +218,7 @@ export default function PracticeSheetPage() {
                         )}
                       </td>
                       {reveal && (
-                        <td className="px-3 py-2 text-[#555555]">
+                        <td className="px-3 py-2 text-[color:var(--text-sub)]">
                           {item.promptLanguage === "DE" ? japaneseWithRomaji : item.answerText}
                         </td>
                       )}

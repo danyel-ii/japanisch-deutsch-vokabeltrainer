@@ -6,20 +6,20 @@ export default function HomePage() {
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-10">
         <header className="card surface flex flex-wrap items-center justify-between gap-4 p-6">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#555555]">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--text-sub)]">
               Vokabel-Arbeitsblatt
             </p>
-            <h1 className="mt-3 text-3xl font-semibold uppercase tracking-wide text-[#0d0d0d]">
+            <h1 className="mt-3 text-3xl font-semibold uppercase tracking-wide text-[color:var(--text-main)]">
               Ein druckfertiger Arbeitsblatt-Generator fuer Deutsch -> Japanisch.
             </h1>
-            <p className="mt-2 max-w-2xl text-sm text-[#555555]">
+            <p className="mt-2 max-w-2xl text-sm text-[color:var(--text-sub)]">
               Verwalte deine Vokabelliste, erstelle Arbeitsblaetter, uebe und drucke sie im
               tabellenbasierten Stil.
             </p>
           </div>
           <nav className="flex flex-wrap gap-3">
             <Link
-              className="pill pill-ghost bg-white"
+              className="pill pill-ghost"
               href="/vocab"
             >
               Vokabelliste
@@ -49,10 +49,10 @@ export default function HomePage() {
             }
           ].map((card) => (
             <div key={card.title} className="card surface p-6">
-              <h2 className="text-lg font-semibold uppercase tracking-wide text-[#0d0d0d]">
+              <h2 className="text-lg font-semibold uppercase tracking-wide text-[color:var(--text-main)]">
                 {card.title}
               </h2>
-              <p className="mt-2 text-sm text-[#555555]">{card.body}</p>
+              <p className="mt-2 text-sm text-[color:var(--text-sub)]">{card.body}</p>
             </div>
           ))}
         </section>
