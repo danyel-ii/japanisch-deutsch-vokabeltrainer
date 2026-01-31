@@ -272,7 +272,7 @@ export default function VocabPage() {
               Vokabelliste
             </p>
             <h1 className="mt-2 text-3xl font-semibold uppercase tracking-wide text-[#0d0d0d]">
-              Halte die Master-Liste sauber.
+              Dein Vokabelliste:
             </h1>
           </div>
           <nav className="flex flex-wrap gap-3">
