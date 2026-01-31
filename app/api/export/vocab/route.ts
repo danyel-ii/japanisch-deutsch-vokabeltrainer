@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import * as XLSX from "xlsx";
 import { prisma } from "@/lib/db";
+import type { VocabEntry } from "@prisma/client";
 
 export const runtime = "nodejs";
 
@@ -17,7 +18,7 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Unbekanntes Exportformat." }, { status: 400 });
   }
 
-  const entries = await prisma.vocabEntry.findMany({
+  const entries: VocabEntry[] = await prisma.vocabEntry.findMany({
     orderBy: [{ orderIndex: "asc" }, { createdAt: "asc" }]
   });
 
