@@ -1,6 +1,19 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import ThemeToggle from "./components/theme-toggle";
 import "./globals.css";
+
+const germanFont = localFont({
+  src: "../assets/special-elite/SpecialElite.ttf",
+  variable: "--font-de",
+  display: "swap"
+});
+
+const titleFont = localFont({
+  src: "../assets/almost-japanese-comic/Almost Japanese Comic.ttf",
+  variable: "--font-title",
+  display: "swap"
+});
 
 export const metadata: Metadata = {
   title: "Vokabel-Arbeitsblatt",
@@ -22,7 +35,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen">
+      <body className={`${germanFont.variable} ${titleFont.variable} min-h-screen`}>
         <ThemeToggle />
         {children}
       </body>

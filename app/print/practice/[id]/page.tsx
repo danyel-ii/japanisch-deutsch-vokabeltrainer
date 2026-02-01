@@ -63,6 +63,8 @@ export default async function PrintPracticePage({
             </thead>
             <tbody>
               {sheet.items.map((item) => {
+                const isGermanPrompt = item.promptLanguage === "DE";
+                const isGermanAnswer = item.promptLanguage === "JA";
                 const japaneseValue =
                   sheet.japaneseDisplay === "kanji" ? item.answerKanji : item.answerKana;
                 const japaneseWithRomaji = sheet.showRomaji
@@ -71,13 +73,19 @@ export default async function PrintPracticePage({
                 return (
                   <tr key={item.id} className="border-b border-[color:var(--border)] last:border-b-0">
                     <td className="px-4 py-3 text-xs text-[color:var(--text-sub)]">{item.order}</td>
-                    <td className="px-4 py-3 font-medium text-[color:var(--text-main)]">{item.promptText}</td>
+                    <td
+                      className={`px-4 py-3 font-medium text-[color:var(--text-main)] ${
+                        isGermanPrompt ? "font-de" : ""
+                      }`}
+                    >
+                      {item.promptText}
+                    </td>
                     <td className="px-4 py-3 text-[color:var(--text-main)]">
                       {showAnswers ? (
                         item.promptLanguage === "DE" ? (
                           <span>{japaneseWithRomaji}</span>
                         ) : (
-                          item.answerText
+                          <span className={isGermanAnswer ? "font-de" : ""}>{item.answerText}</span>
                         )
                       ) : (
                         <span className="block h-6 w-full border-b border-[color:var(--border)]"></span>

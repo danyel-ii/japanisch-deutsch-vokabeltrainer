@@ -9,8 +9,8 @@ export default function HomePage() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--text-sub)]">
               Vokabel-Arbeitsblatt
             </p>
-            <h1 className="mt-3 text-3xl font-semibold uppercase tracking-wide text-[color:var(--text-main)]">
-              Ein druckfertiger Arbeitsblatt-Generator fuer Deutsch {"->"} Japanisch.
+            <h1 className="mt-3 text-3xl font-semibold uppercase tracking-wide text-[color:var(--text-main)] font-title">
+              Ein druckfertiger Arbeitsblatt-Generator
             </h1>
             <p className="mt-2 max-w-2xl text-sm text-[color:var(--text-sub)]">
               Verwalte deine Vokabelliste, erstelle Arbeitsblaetter, uebe und drucke sie im

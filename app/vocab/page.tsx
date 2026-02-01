@@ -386,7 +386,7 @@ export default function VocabPage() {
                         {entry.orderIndex}
                       </td>
                       {showGerman && (
-                        <td className="px-3 py-2 font-medium">{entry.sourceText}</td>
+                        <td className="px-3 py-2 font-medium font-de">{entry.sourceText}</td>
                       )}
                       {showKana && <td className="px-3 py-2">{entry.targetKana}</td>}
                       {showKanji && <td className="px-3 py-2">{entry.targetKanji}</td>}
@@ -438,7 +438,7 @@ export default function VocabPage() {
                     Deutsch
                   </span>
                   <input
-                    className="rounded-[var(--radius-sm)] border border-[color:var(--border)] bg-[var(--bg-white)] px-3 py-2"
+                    className="rounded-[var(--radius-sm)] border border-[color:var(--border)] bg-[var(--bg-white)] px-3 py-2 font-de"
                     value={form.sourceText}
                     onChange={(event) => handleChange("sourceText", event.target.value)}
                   />

@@ -118,6 +118,14 @@ h3,
     sans-serif;
 }
 
+.font-de {
+  font-family: var(--font-de, var(--font-body)), ui-sans-serif, system-ui;
+}
+
+.font-title {
+  font-family: var(--font-title, var(--font-head)), ui-sans-serif, system-ui;
+}
+
 .surface {
   background: var(--bg-surface);
   border: 1px solid var(--border);

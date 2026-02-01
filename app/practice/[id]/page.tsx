@@ -174,6 +174,8 @@ export default function PracticeSheetPage() {
               <tbody>
                 {sheet.items.map((item) => {
                   const isCorrect = checked[item.id];
+                  const isGermanPrompt = item.promptLanguage === "DE";
+                  const isGermanAnswer = item.promptLanguage === "JA";
                   const japaneseValue =
                     sheet.japaneseDisplay === "kanji" ? item.answerKanji : item.answerKana;
                   const japaneseWithRomaji =
@@ -192,12 +194,18 @@ export default function PracticeSheetPage() {
                       }`}
                     >
                       <td className="px-3 py-2 text-xs text-[color:var(--text-sub)]">{item.order}</td>
-                      <td className="px-3 py-2 font-medium text-[color:var(--text-main)]">
+                      <td
+                        className={`px-3 py-2 font-medium text-[color:var(--text-main)] ${
+                          isGermanPrompt ? "font-de" : ""
+                        }`}
+                      >
                         {item.promptText}
                       </td>
                       <td className="px-3 py-2">
                         <input
-                          className="w-full rounded-[var(--radius-sm)] border border-[color:var(--border)] bg-[var(--bg-white)] px-3 py-2"
+                          className={`w-full rounded-[var(--radius-sm)] border border-[color:var(--border)] bg-[var(--bg-white)] px-3 py-2 ${
+                            isGermanAnswer ? "font-de" : ""
+                          }`}
                           value={answers[item.id] ?? ""}
                           onChange={(event) =>
                             setAnswers((prev) => ({
@@ -218,7 +226,11 @@ export default function PracticeSheetPage() {
                         )}
                       </td>
                       {reveal && (
-                        <td className="px-3 py-2 text-[color:var(--text-sub)]">
+                        <td
+                          className={`px-3 py-2 text-[color:var(--text-sub)] ${
+                            isGermanAnswer ? "font-de" : ""
+                          }`}
+                        >
                           {item.promptLanguage === "DE" ? japaneseWithRomaji : item.answerText}
                         </td>
                       )}
